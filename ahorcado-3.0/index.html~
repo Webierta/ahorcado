@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Ahorcado</title>
+    <meta name="author" content="Jesús Cuerda Villanueva" />
+    <meta name="description" content="Juego del ahorcado. Versión 3.0" />
+    <link rel="stylesheet" href="jquery.mobile-1.4.0.min.css" />    
+    <link rel="stylesheet" href="estilos.css">    
+    <script type="text/javascript" src="jquery-1.10.2.min.js"></script>   
+    <script type="text/javascript" src="jquery.mobile-1.4.0.min.js"></script>
+<!--    <script type="text/javascript" src="zepto.min.js"></script> -->
+    <script type="text/javascript" src="capas.js"></script>    
+</head>
+<body>
+<!--    PAGINA DE INICIO-->
+    <div data-role="page" id="pageInicio" data-theme="e">    
+        <div data-role="header">
+            <h1>El Ahorcado</h1>
+        </div>        
+        <div data-role="content" id="cajaInicio">
+            <img src="icon128.png" class="centrar" id="iconoInicio" alt="icono" />
+            <ul data-role="listview" data-inset="true">                  
+                <li><a href="#pageInfo" data-transition="slide" data-role="button" data-icon="info">Info</a></li> 
+                <li><a href="#pageNiveles" data-transition="slide" data-role="button" data-icon="arrow-r">Jugar</a></li> 
+                <li><a href="#pageMarcador" data-transition="slide" data-role="button" data-icon="check" id="verMarcador">Marcador</a></li>          
+            </ul>            
+        </div>
+        <div data-role="footer"> 
+            <h4><a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PM8BFZ8QL5VFY"><img src="donate.gif" alt="donate" /></a></h4>
+        </div> 
+    </div> 
+<!--    PAGINA INFO    -->
+    <div data-role="page" id="pageInfo" data-theme="b">
+        <div data-role="header">
+            <a href="#pageInicio" data-rel="back" data-role="button" data-icon="home" data-iconpos="notext" data-theme="a">Back</a>
+            <h1>Info</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true">                  
+                <li><a href="#pageAyuda" data-transition="slide">Ayuda</a></li> 
+                <li><a href="#pageCreditos" data-transition="slide">Créditos</a></li> 
+            </ul>  
+        </div>
+    </div>
+<!--    PAGINA TEMAS-->
+    <div data-role="page" id="pageNiveles" data-theme="a">
+        <div data-role="header">
+            <a href="#pageInicio" data-transition="slide" data-role="button" data-icon="home" data-iconpos="notext">Home</a>
+        <h1>Temas</h1>
+        </div>
+        <div data-role="content" id="temas">
+<!--            <div data-role="controlgroup">-->
+            <div class="ui-grid-a" id="cuadroTemas">
+	           <div class="ui-block-a">
+                    <button class="niveles" id="nivel1" value="1"><img src="iconDeporte2.svg" alt="Deportes" /> Deportes</button>
+               </div>
+	           <div class="ui-block-b">
+                    <button class="niveles" id="nivel2" value="2"><img src="iconAnimal2.svg" alt="Animales" /> Animales</button>
+               </div>
+               <div class="ui-block-a">
+                    <button class="niveles" id="nivel3" value="3"><img src="iconCiudad2.svg" alt="Ciudades" /> Ciudades</button>
+               </div>
+	           <div class="ui-block-b">
+                    <button class="niveles" id="nivel4" value="4"><img src="iconFlor2.svg" alt="Flores" /> Flores</button>
+               </div>
+               <div class="ui-block-a">
+                    <button class="niveles" id="nivel5" value="5"><img src="iconPelicula.svg" alt="Peliculas" /> Películas</button>
+               </div>
+	           <div class="ui-block-b">
+                    <button class="niveles" id="nivel6" value="6"><img src="pista2.svg" alt="Pista" /> Todos</button>
+               </div>
+            </div>
+<!--            </div>    -->
+        </div>    
+    </div>    
+<!--    PAGINA MARCADOR    -->
+    <div data-role="page" id="pageMarcador" data-theme="b">
+        <div data-role="header">
+            <a href="index.html" data-transition="slide" rel="external" data-role="button" data-icon="home" data-iconpos="notext" data-theme="a">Home</a> 
+            <h1>Marcador</h1>
+        </div>
+        <div data-role="content" id="cajaMarcador">
+            <div id="marcador">
+                <table id="tablaMarcador" class="marcador">
+                    <tbody></tbody>
+                </table>            
+            </div>  
+        </div>        
+        <div data-role="footer" class="ui-bar" id="pieMarcador">            
+            <div data-role="navbar">
+		      <ul>
+			     <li><a data-role="button" data-icon="delete" data-theme="b" id="borrarMarcador">Borrar</a></li>
+			     <li><a data-role="button" data-icon="forward" data-theme="a" id="salirMarcador">Jugar</a></li>			
+		      </ul>
+	       </div><!-- /navbar -->  
+        </div> 
+    </div>            
+<!--    PAGINA JUEGO    -->
+    <div data-role="page" id="pageJuego" data-theme="a">
+        <div data-role="header">
+            <a href="index.html" data-transition="slide" rel="external" data-role="button" data-icon="home" data-iconpos="notext" data-theme="a">Home</a> 
+            <!-- <a data-role="button" data-icon="home" data-iconpos="notext" class="reiniciar">Home</a>-->
+            <h1>El Ahorcado</h1>
+            <span class="ui-btn-right" id="indicadorNivel"></span>
+        </div>        
+        <div data-role="content" id="juego">            
+            <div class="juego" id="palabra">
+                <span class="palabra letra1"></span>
+                <span class="palabra letra2"></span>
+                <span class="palabra letra3"></span>
+                <span class="palabra letra4"></span>
+                <span class="palabra letra5"></span>
+                <span class="palabra letra6"></span>   
+                <span class="palabra letra7"></span>   
+                <span class="palabra letra8"></span>   
+            </div>
+            <div id="dibujo">                
+                <img id="ahorcado" class="juego" src="1.png" alt="ahorcado" />
+                <audio id="sonido" autoplay></audio>
+            </div>
+        </div>      
+        <div data-role="footer" data-position="fixed" id="pieJuego">            
+            <div id="teclado">        
+                <span id="fila1"><button class="letra" value="a">A</button><button class="letra" value="b">B</button><button class="letra" value="c">C</button><button class="letra" value="d">D</button><button class="letra" value="e">E</button><button class="letra" value="f">F</button><button class="letra" value="g">G</button><button class="letra" value="h">H</button><button class="letra" value="i">I</button></span>
+                <span id="fila2"><button class="letra" value="j">J</button><button class="letra" value="k">K</button><button class="letra" value="l">L</button><button class="letra" value="m">M</button><button class="letra" value="n">N</button><button class="letra" value="ñ">Ñ</button><button class="letra" value="o">O</button><button class="letra" value="p">P</button><button class="letra" value="q">Q</button></span>
+                <span id="fila3"><button class="letra" value="r">R</button><button class="letra" value="s">S</button><button class="letra" value="t">T</button><button class="letra" value="u">U</button><button class="letra" value="v">V</button><button class="letra" value="w">W</button><button class="letra" value="x">X</button><button class="letra" value="y">Y</button><button class="letra" value="z">Z</button></span>			
+	       </div><!-- /teclado -->
+        </div>  
+    </div>    
+<!--    PAGINA AYUDA    -->
+    <div data-role="page" id="pageAyuda" data-theme="b">
+        <div data-role="header" data-position="fixed">            
+            <a href="#pageInicio" data-transition="slide" data-role="button" data-icon="home" data-iconpos="notext" data-theme="a">Home</a>
+            <h1>Ayuda</h1>
+            <a href="#pageInfo" data-rel="back" data-role="button" data-icon="back" data-iconpos="notext" data-theme="a">Back</a>            
+        </div>
+        <div data-role="content">
+            <p>Esta aplicación revive el clásico juego de lápiz y papel <strong>"El Ahorcado"</strong>. El objetivo de este juego es descubrir una palabra oculta.</p>
+            <p>En primer lugar, el jugador deberá seleccionar un tema:</p>
+            <ol>
+                <li>Deportes.</li>
+                <li>Animales.</li>
+                <li>Ciudades del Mundo.</li>
+                <li>Flores.</li>
+                <li>Películas.</li>
+                <li>Todos: la combinación de los anteriores.</li>
+            </ol>                
+            <p>Después se propone aleatoriamente una palabra de ese tema y se dibuja una raya por cada letra de la palabra secreta. El jugador deberá acertar las letras que pueden estar en esa palabra.</p>
+            <p>Si la palabra oculta contiene esa letra, aparecerá en su lugar correspondiente (tantas veces como se repita). En caso contrario, por cada error se dibuja una parte de la figura del ahorcado (cabeza, tronco y extremidades) y cada vez se está un poquito más cerca de 'morir' en la horca.</p>                
+            <p>Se gana el juego si se completa la palabra antes de dibujar completamente el monigote del ahorcado, y se pierde si 'mueres' en la horca (al sexto error).</p>
+            <p>Si empiezas otra partida sin pasar por la pantalla de inicio volverás a jugar en el nivel anterior. La aplicación guarda los resultados para cada categoría de palabras. Un ayuda: En el nivel 'Todos' aparece la posibilidad de pedir una pista.</p>            
+        </div>    
+    </div>              
+<!--    PAGINA CREDITOS-->
+    <div data-role="page" id="pageCreditos" data-theme="b">
+        <div data-role="header" data-position="fixed">            
+            <a href="#pageInicio" data-transition="slide" data-role="button" data-icon="home" data-iconpos="notext" data-theme="a">Home</a>
+            <h1>Créditos</h1>
+            <a href="#pageInfo" data-rel="back" data-role="button" data-icon="back" data-iconpos="notext" data-theme="a">Back</a>
+        </div>
+        <div data-role="content">
+            <h3>Juego del Ahorcado</h3>
+            <p>Versión: 3.0 (2014)</p>
+            <p>Autor: Jesús Cuerda Villanueva.</p>
+            <p>Web: <a target="_blank" href="http://misapp.wordpress.com">MisAPP</a>, para cualquier sugerencia, crítica o comentario.</p>
+            <p>Aplicación gratuita y sin publicidad. Colabora con un donativo vía <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PM8BFZ8QL5VFY">PayPal</a> para la adquisición de un dispositivo con Firefox OS y un nuevo ordenador que me facilite el desarrollo de nuevas aplicaciones.</p>
+            <p>Licencia: Reconocimiento-NoComercial-CompartirIgual 3.0 España <a target="_blank"  href="http://creativecommons.org/licenses/by-nc-sa/3.0/es/">(CC BY-NC-SA 3.0 ES)</a>.</p>                 
+            <h3>Reconocimientos:</h3>
+            <ul>
+                <li>Mozilla.org.</li>
+                <li>The jQuery Project.</li>
+                <li><a target="_blank" href="http://thenounproject.com/">Noun Project</a>.</li>
+                <li>Flaticon:
+                    <a target="_blank" href="http://www.flaticon.com/free-icon/ball-of-american-football_14379" title="Picol">Picol</a>,
+                    <a target="_blank" href="http://www.freepik.com" title="Freepik">Freepik</a>,
+                    <a target="_blank" href="http://www.flaticon.com/free-icon/earth-planet-globe_23370" title="Tuts+">Tuts+</a>,
+                    <a target="_blank" href="http://www.flaticon.com/free-icon/information-symbol_23989" title="Icomoon">Icomoon</a>,
+                    <a target="_blank" href="http://www.flaticon.com/free-icon/help-circled_3711" title="Daniel Bruce">Daniel Bruce</a>,
+                    <a target="_blank" href="http://www.flaticon.com/free-icon/question-mark-in-a-circle_8235" title="Amit Jakhu">Amit Jakhu</a>.
+                </li>     
+                <li><a target="_blank" href="http://recursostic.educacion.es/bancoimagenes/web/">Banco de imágenes y sonidos</a> del Instituto de Tecnologías Educativas. Ministerio de Educación.</li>
+                <li>Software: Manjaro, Firefox, Brackets, Inkscape, GIMP.</li>
+            </ul>           
+        </div>    
+    </div>    
+</body>    
+</html>
