@@ -2,11 +2,17 @@
 
 ![Ahorcado Logo](https://raw.githubusercontent.com/Webierta/ahorcado/master/ahorcado-3.0/icon256.png)
 
-# DESCRIPCIÓN
+## DESCRIPCIÓN
 
 Esta aplicación revive el clásico juego de lápiz y papel **“El Ahorcado”**. El objetivo de este juego es descubrir una palabra oculta acertando las letras que la componen.
 
-# JUEGO
+## EJECUCIÓN
+
+Multiplataforma y multidispositivo. No necesitas instalar nada. 
+
+Descarga la carpeta ahorcado-3.0 en tu sistema y abre el archivo index.html con tu navegador y ¡a disfrutar!
+
+## JUEGO
 
 En primer lugar, el jugador deberá seleccionar una temática:
 
@@ -23,9 +29,9 @@ Se gana el juego si se completa la palabra antes de dibujar completamente el mon
 
 Si empiezas otra partida sin pasar por la pantalla de inicio volverás a jugar en el nivel anteior. La aplicación guarda los resultados para cada categoría de palabras. Un ayuda: En el nivel ¡A por todas! aparece la posibilidad de pedir una pista.
 
-Disponible para su descarga en [Firefox Marketplace](https://marketplace.firefox.com/app/ahorcado). También puedes [probarla aquí](http://webierta.50webs.com/), aunque esta demo puede tener alguna limitación.
+## DESARROLLO Y UPDATES
 
-## UPDATES
+Inicialmente desarrollada para Firefox OS, la aplicación está disponible en [Firefox Marketplace](https://marketplace.firefox.com/app/ahorcado). También puedes [probarla aquí](http://webierta.50webs.com/), aunque esta demo puede tener alguna limitación.
 
 07/01/2014: Versión 3.0:
 - Ampliado el banco de palabras de cada tema.
